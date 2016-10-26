@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Endroid\Bundle\TwitterBundle\EndroidTwitterBundle;
 class DefaultController extends Controller
 {
     /**
@@ -24,6 +24,18 @@ class DefaultController extends Controller
      */
     public function showTweet()
     {
+
+        $twitter = $this->get('endroid.twitter');
+
+// Retrieve the user's timeline
+        $tweets = $twitter->getTimeline(array(
+            'count' => 5
+        ));
+
+// Or retrieve the timeline using the generic query method
+        $response = $twitter->query('statuses/user_timeline', 'GET', 'json');
+        $tweets = json_decode($response->getContent());
+        var_dump($tweets);
         $data = [];
         return $this->render("tweet.html.twig", $data);
     }
