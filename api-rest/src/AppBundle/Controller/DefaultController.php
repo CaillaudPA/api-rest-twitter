@@ -18,4 +18,14 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * @Route("/my-tweets", name="myTweet")
+     */
+    public function showTweet()
+    {
+        $data = [];
+        return $this->render("tweet.html.twig", $data);
+    }
+
 }
