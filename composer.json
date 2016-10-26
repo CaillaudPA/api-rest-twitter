@@ -1,0 +1,5 @@
+{
+    "require": {
+        "endroid/twitter-bundle": "^1.2"
+    }
+}
