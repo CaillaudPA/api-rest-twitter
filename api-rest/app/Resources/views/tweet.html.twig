@@ -2,27 +2,22 @@
 
 {% block body %}
     {{ parent() }}
-    
-{% for tweet in tweets %}
+    {% for tweet in tweets %}
+        {% if tweet.id_str not in savedTweetsId %}
+            <div class="row">
+                <div class="col s3">  </div>
+                <div class="col s6"> <blockquote class="twitter-tweet">
+                        <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id_str }}"></a>
+                    </blockquote>
+                    <button class="save_tweet button-success waves-effect waves-light btn" route="{{ path('saveTweet', {id: tweet.id_str }) }}">
+                        Enregistrer <i class="material-icons">done</i>
+                    </button>
 
-    {% if tweet.id_str not in savedTweetsId %}
-
-    <div class="row">
-    <div class="col s3">  </div>
-    <div class="col s6"> <blockquote class="twitter-tweet">
-            <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id_str }}"></a>
-        </blockquote>
-        <button class="save_tweet button-success waves-effect waves-light btn" route="{{ path('saveTweet', {id: tweet.id_str }) }}">Enregistrer</button>
-
-    </div>
-    <div class="col s3">  </div>
-
-
+                </div>
+                <div class="col s3">  </div>
             </div>
-           
-        
-    {% endif %}
-{% endfor %}
+        {% endif %}
+    {% endfor %}
 
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endblock %}

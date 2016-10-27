@@ -1,64 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/app/css/tweet.css') }}" />
-            <!-- Compiled and minified CSS -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/tweet.css') }}" />
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 
 
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}
-
-            <nav class="top-nav">
-                <div class="container">
-                    <div class="nav-wrapper">
-                        <a href="#" data-activates="slide-out" class="button-collapse page-title" style="display: block">  Menu</a>
-                    </div>
-                </div>
-            </nav>
-
-
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block body_header %}
+    <nav class="top-nav">
         <div class="container">
-           {# <div class="pure-menu pure-menu-horizontal">
-                <a href="{{ path('myTweet') }}" class="pure-menu-heading pure-menu-link">LOGO</a>
-                <ul class="pure-menu-list">
-                    <li class="pure-menu-item"><a href="{{ path('myTweet') }}" class="pure-menu-link">Accueil</a></li>
-                    <li class="pure-menu-item"><a href="{{ path('showFriends') }}" class="pure-menu-link">Amis</a></li>
-                    <li class="pure-menu-item"><a href="{{ path('showSavedTweet') }}" class="pure-menu-link">Tweets enregistrés</a></li>
-                </ul>
-            </div>#}
-
-
-
-            <ul id="slide-out" class="side-nav">
-                <li><div class="userView">
-                        <img class="background" src="{{ app.session.get('current_user').profile_background_image_url }}">
-                        <a href="#!user"><img class="circle" src="{{ app.session.get('current_user').profile_image_url }}"></a>
-                        <a href="#!name"><span class="white-text name">@{{ app.session.get('current_user').screen_name }}</span></a>
-                        <a href="#!email"><span class="white-text email">caillaud.pierreantoine@yahoo.com</span></a>
-                    </div></li>
-                <li><a href="{{ path('myTweet') }}"><i class="material-icons">cloud</i>Voir les tweets</a></li>
-                <li><a href="{{ path('showSavedTweet') }}">Mes tweets sauvegardés</a></li>
-                <li><div class="divider"></div></li>
-                <li><a href="{{ path('showFriends') }}" >Following</a></li>
-            </ul>
-
+            <div class="nav-wrapper">
+                <a href="#" data-activates="slide-out" class="button-collapse page-title" style="display: block">  Menu</a>
             </div>
-        {% endblock %}
-        {% block javascripts %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-            <!-- Compiled and minified JavaScript -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-            <script src="{{ asset("bundles/app/js/tweet.js") }}"></script>
-        {% endblock %}
-    </body>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block left_menu %}
+    <div class="container">
+
+        <ul id="slide-out" class="side-nav">
+            <li><div class="userView">
+                    <img class="background" src="{{ app.session.get('current_user').profile_background_image_url }}">
+                    <a href="#!user"><img class="circle" src="{{ app.session.get('current_user').profile_image_url }}"></a>
+                    <a href="#!name"><span class="white-text name">@{{ app.session.get('current_user').screen_name }}</span></a>
+                    <a href="#!email"><span class="white-text email">caillaud.pierreantoine@yahoo.com</span></a>
+                </div></li>
+            <li><a href="{{ path('myTweet') }}"><i class="material-icons">message</i>Voir les tweets</a></li>
+            <li><a href="{{ path('showSavedTweet') }}"><i class="material-icons">cloud</i>Mes tweets sauvegardés</a></li>
+            <li><div class="divider"></div></li>
+            <li><a href="{{ path('showFriends') }}" ><i class="material-icons">perm_identity</i>Following</a></li>
+        </ul>
+
+    </div>
+{% endblock %}
+<div class="container">
+{% block body %}
+
+
+
+
+
+{% endblock %}
+</div>
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="{{ asset("bundles/app/js/tweet.js") }}"></script>
+{% endblock %}
+</body>
 </html>
