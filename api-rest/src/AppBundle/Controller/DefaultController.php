@@ -5,6 +5,12 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+
+/*
+ * Entity
+ */
+use AppBundle\Entity\Tweet;
+
 class DefaultController extends Controller
 {
     private $dir;
@@ -39,6 +45,6 @@ class DefaultController extends Controller
 
 
         return $this->render("tweet.html.twig", array("tweets"=>$tweets));
-    }
+    }    
 
 }

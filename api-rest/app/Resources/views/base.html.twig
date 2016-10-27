@@ -12,7 +12,15 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div class="pure-menu pure-menu-horizontal">
+                <a href="{{ path('myTweet') }}" class="pure-menu-heading pure-menu-link">LOGO</a>
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item"><a href="{{ path('myTweet') }}" class="pure-menu-link">Accueil</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tweets enregistrés</a></li>
+                </ul>
+            </div>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
