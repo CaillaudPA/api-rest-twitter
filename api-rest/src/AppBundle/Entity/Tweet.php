@@ -18,9 +18,15 @@ class Tweet
     private $id;
 
     /**
-     * @ORM\Column(type="integer", length=100)
+     * @ORM\Column(type="string", length=1024)
      */
     private $idTweet;
+
+    public function __construct($idTweet)
+    {
+        $this->idTweet = $idTweet;
+    }
+
 
     /**
      * Gets the value of id.

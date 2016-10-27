@@ -39,4 +39,35 @@ class ApiController extends Controller
         #return $this->twitter->query('statuses/user_timeline', 'GET', 'json');
     }
 
+    /**
+     * @Route("/showTweet/{id}", name="showTweet")
+     */
+    public function showTweetAction($id)
+    {
+        $this->twitter = $this->get('endroid.twitter');
+        $tweets = $this->twitter->query("statuses/show", 'GET', 'json', array('id'=>$id));
+
+        $response = json_decode($tweets->getContent());
+
+        return $this->json($response);
+        #return $this->twitter->query('statuses/user_timeline', 'GET', 'json');
+    }
+
+
+
+    /**
+     * @Route("/lists/statuses", name="getListStatuses")
+     */
+    public function getListStatusesAction($ids)
+    {
+
+        $this->twitter = $this->get('endroid.twitter');
+        var_dump($ids);
+        $tweets = $this->twitter->query("lists/statuses", 'GET', 'json', array('list_id'=>$ids));
+        var_dump('ok');
+        $response = json_decode($tweets->getContent());
+
+        return $this->json($response);
+    }
+
 }
