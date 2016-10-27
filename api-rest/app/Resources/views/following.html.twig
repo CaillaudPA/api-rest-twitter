@@ -5,25 +5,25 @@
     <div class="row">
     {% for user in friends.users %}
 
-            <div class="col s12 m5">
-                <div class="card medium">
-                    <div class="card-image">
-                        {% if user.profile_use_background_image == true %}
-                            <img src="{{ user.profile_background_image_url }}">
-                        {% else %}
-                            <img src="{{ asset("bundles/app/image/background/default-background.png") }}">
-                        {% endif %}
-                        <span class="card-title">@{{ user.screen_name }}</span>
-                    </div>
-                    <div class="card-content">
-                        <img class="circle" src="{{ user.profile_image_url }}">
-                        <p>{{ user.name }}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">Voir les tweets</a>
-                    </div>
+        <div class="col s12 m5">
+            <div class="card medium">
+                <div class="card-image">
+                    {% if user.profile_use_background_image == true %}
+                        <img src="{{ user.profile_background_image_url }}">
+                    {% else %}
+                        <img src="{{ asset("bundles/app/image/background/default-background.png") }}">
+                    {% endif %}
+                    <span class="card-title">@{{ user.screen_name }}</span>
+                </div>
+                <div class="card-content">
+                    <img class="circle" src="{{ user.profile_image_url }}">
+                    <p>{{ user.name }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="{{ path('showFiendTweets',{'idFriend' : user.id_str}) }}">Voir les tweets</a>
                 </div>
             </div>
+        </div>
 
     {% endfor %}
     </div>

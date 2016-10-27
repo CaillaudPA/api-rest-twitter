@@ -26,8 +26,6 @@ class ApiController extends Controller
 
     }
 
-
-
     /**
      * @Route("/getTimeline/{number}", name="getTimeline")
      */
@@ -40,6 +38,19 @@ class ApiController extends Controller
 
         return $this->json($response);
         #return $this->twitter->query('statuses/user_timeline', 'GET', 'json');
+    }
+
+    /**
+     * @Route("/getFriendTimeline/{idFriend}", name="getFriendTimeline")
+     */
+    public function getFriendTimelineAction($idFriend)
+    {
+        $this->twitter = $this->get('endroid.twitter');
+        $tweets = $this->twitter->query('statuses/user_timeline', 'GET', 'json', array("user_id"=>$idFriend));
+
+        $response = json_decode($tweets->getContent());
+
+        return $this->json($response);
     }
 
     /**

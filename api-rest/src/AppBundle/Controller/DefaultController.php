@@ -167,4 +167,17 @@ class DefaultController extends Controller
     }
 
 
+    /**
+     * @Route("friends/{idFriend}", name="showFiendTweets")
+     */
+    public function showFiendTweetsAction($idFriend)
+    {
+        $response = $this->forward("AppBundle:Api:getFriendTimeline", array("idFriend" =>$idFriend));
+
+        $tweets = json_decode($response->getContent());
+
+        return $this->render("friendsTweet.html.twig", array("tweets"=>$tweets));
+    }
+
+
 }
