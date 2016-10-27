@@ -32,7 +32,7 @@ class DefaultController extends Controller
      */
     public function showTweet()
     {
-        $response = $this->forward("AppBundle:Api:getTimeline", array("number"=>5));
+        $response = $this->forward("AppBundle:Api:getTimeline", array("number"=>10));
 
         #$response = Request::create( $this->dir.'/getTimeline/5', 'GET' );
         $tweets = json_decode($response->getContent());

@@ -31,7 +31,7 @@ class ApiController extends Controller
     public function getTimelineAction($number = 5)
     {
         $this->twitter = $this->get('endroid.twitter');
-        $tweets = $this->twitter->query('statuses/home_timeline', 'GET', 'json');
+        $tweets = $this->twitter->query('statuses/home_timeline', 'GET', 'json', array("count"=>$number));
 
         $response = json_decode($tweets->getContent());
 

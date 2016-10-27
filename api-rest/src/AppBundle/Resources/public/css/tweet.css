@@ -38,3 +38,11 @@ div.twitter-tweet-rendered div.footer a.view-details span {
     font: 14px Georgia, serif !important;
     color: #fff !important;
 }
+
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
