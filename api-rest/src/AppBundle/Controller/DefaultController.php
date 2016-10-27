@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 use AppBundle\Entity\Tweet;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
@@ -28,6 +29,12 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $response = $this->forward("AppBundle:Api:accountVerifyCredentials");
+        $info = $response->getContent();
+
+        $session = new Session();
+        $session->set('current_user', json_decode($info));
+
         $response = $this->forward("AppBundle:Api:getTimeline", array("number"=>10));
 
         #$response = Request::create( $this->dir.'/getTimeline/5', 'GET' );
@@ -143,6 +150,19 @@ class DefaultController extends Controller
 
         return new Response('0');
 
+
+    }
+
+    /**
+     * @Route("/following", name="showFriends")
+     */
+    public function showFriendsAction()
+    {
+        $response = $this->forward("AppBundle:Api:friendsList");
+
+        $friends = json_decode($response->getContent());
+
+        return $this->render("following.html.twig", array("friends"=>$friends));
 
     }
 

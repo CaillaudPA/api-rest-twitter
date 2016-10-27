@@ -23,7 +23,10 @@ class ApiController extends Controller
 
     public function __construct()
     {
+
     }
+
+
 
     /**
      * @Route("/getTimeline/{number}", name="getTimeline")
@@ -62,12 +65,35 @@ class ApiController extends Controller
     {
 
         $this->twitter = $this->get('endroid.twitter');
-        var_dump($ids);
+
         $tweets = $this->twitter->query("lists/statuses", 'GET', 'json', array('list_id'=>$ids));
-        var_dump('ok');
+
         $response = json_decode($tweets->getContent());
 
         return $this->json($response);
     }
+
+    /**
+     * @Route("/friends/list", name="friendsList")
+     */
+    public function friendsListAction()
+    {
+        $this->twitter = $this->get('endroid.twitter');
+        $response = $this->twitter->query("friends/list", "GET", "json");
+        $friends = json_decode($response->getContent());
+        return $this->json($friends);
+    }
+
+    /**
+     * @Route("account/verify_credentials", name="accountVerifyCredentials")
+     */
+    public function accountVerifyCredentialsAction()
+    {
+        $this->twitter = $this->get('endroid.twitter');
+        $response = $this->twitter->query("account/verify_credentials", "GET", "json");
+        $info = json_decode($response->getContent());
+        return $this->json($info);
+    }
+
 
 }
