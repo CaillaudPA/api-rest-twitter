@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\TweetRepository")
  * @ORM\Table(name="Tweet")
  */
 class Tweet
@@ -45,7 +45,7 @@ class Tweet
      *
      * @return self
      */
-    private function setId($id)
+    public function setId($id)
     {
         $this->id = $id;
 
@@ -69,7 +69,7 @@ class Tweet
      *
      * @return self
      */
-    private function setIdTweet($idTweet)
+    public function setIdTweet($idTweet)
     {
         $this->idTweet = $idTweet;
 
