@@ -1,0 +1,9 @@
+
+
+{% for tweet in tweets %}
+    <blockquote class="twitter-tweet">
+       
+        <a href="https://twitter.com/{{ tweet.user.name }}/status/{{ tweet.id_str }}" data-datetime="2012-12-03T18:51:11+00:00"></a>
+    </blockquote>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% endfor %}

@@ -5,9 +5,17 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Endroid\Bundle\TwitterBundle\EndroidTwitterBundle;
 class DefaultController extends Controller
 {
+    private $dir;
+    private $twitter;
+
+    public function __construct()
+    {
+        $this->dir = 'localhost/api-rest-twitter/api-rest/web';
+
+    }
+
     /**
      * @Route("/", name="homepage")
      */
@@ -24,20 +32,13 @@ class DefaultController extends Controller
      */
     public function showTweet()
     {
+        $response = $this->forward("AppBundle:Api:getTimeline", array("number"=>5));
 
-        $twitter = $this->get('endroid.twitter');
-
-// Retrieve the user's timeline
-        $tweets = $twitter->getTimeline(array(
-            'count' => 5
-        ));
-
-// Or retrieve the timeline using the generic query method
-        $response = $twitter->query('statuses/user_timeline', 'GET', 'json');
+        #$response = Request::create( $this->dir.'/getTimeline/5', 'GET' );
         $tweets = json_decode($response->getContent());
-        var_dump($tweets);
-        $data = [];
-        return $this->render("tweet.html.twig", $data);
+
+
+        return $this->render("tweet.html.twig", array("tweets"=>$tweets));
     }
 
 }
