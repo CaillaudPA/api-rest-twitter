@@ -4,7 +4,9 @@
     {{ parent() }}
     
 {% for tweet in tweets %}
+
     {% if tweet.id_str not in savedTweetsId %}
+
     <div class="row">
     <div class="col s3">  </div>
     <div class="col s6"> <blockquote class="twitter-tweet">
@@ -14,6 +16,11 @@
 
     </div>
     <div class="col s3">  </div>
+
+
+            </div>
+           
+        
     {% endif %}
 {% endfor %}
 
