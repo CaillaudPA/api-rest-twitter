@@ -33,8 +33,18 @@ class DefaultController extends Controller
         #$response = Request::create( $this->dir.'/getTimeline/5', 'GET' );
         $tweets = json_decode($response->getContent());
 
+        $doctrine = $this->getDoctrine();
+        $em = $doctrine->getManager();
+        $pr = $doctrine->getRepository("AppBundle:Tweet");
+        $savedTweetsId = $pr->findAllIds();
 
-        return $this->render("tweet.html.twig", array("tweets"=>$tweets));
+        $array_id = array();
+
+        foreach ($savedTweetsId as $tweetId) {
+            array_push($array_id, $tweetId);
+        }
+
+        return $this->render("tweet.html.twig", array("tweets"=>$tweets, "savedTweetsId" => $array_id));
     }
 
     /**
@@ -47,8 +57,20 @@ class DefaultController extends Controller
         #$response = Request::create( $this->dir.'/getTimeline/5', 'GET' );
         $tweets = json_decode($response->getContent());
 
+        $doctrine = $this->getDoctrine();
+        $em = $doctrine->getManager();
+        $pr = $doctrine->getRepository("AppBundle:Tweet");
+        $savedTweetsId = $pr->findAll();
 
-        return $this->render("tweet.html.twig", array("tweets"=>$tweets));
+        $array_id = array();
+
+        foreach ($savedTweetsId as $tweetId) {
+            array_push($array_id, $tweetId->getIdTweet());
+        }
+
+        //var_dump($array_id);die;
+
+        return $this->render("tweet.html.twig", array("tweets"=>$tweets, "savedTweetsId" => $array_id));
     }
 
     /**
