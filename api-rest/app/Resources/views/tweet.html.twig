@@ -4,15 +4,15 @@
     {{ parent() }}
 
 {% for tweet in tweets %}
-    <div class="pure-g">
-    <div class="pure-u-1-3">  </div>
-    <div class="pure-u-1-3"> <blockquote class="twitter-tweet">
+    <div class="row">
+    <div class="col s3">  </div>
+    <div class="col s6"> <blockquote class="twitter-tweet">
             <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id_str }}"></a>
         </blockquote>
-        <button class="save_tweet button-success pure-button" route="{{ path('saveTweet', {id: tweet.id_str }) }}">Enregistrer</button>
+        <button class="save_tweet button-success waves-effect waves-light btn" route="{{ path('saveTweet', {id: tweet.id_str }) }}">Enregistrer</button>
 
     </div>
-    <div class="pure-u-1-3">  </div>
+    <div class="col s3">  </div>
 
     </div>
 {% endfor %}
